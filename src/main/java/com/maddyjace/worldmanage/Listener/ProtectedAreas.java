@@ -6,9 +6,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockSpreadEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.block.*;
 
 
 public class ProtectedAreas implements Listener {
@@ -37,14 +35,26 @@ public class ProtectedAreas implements Listener {
 
     @EventHandler
     public void onBlockSpread(BlockSpreadEvent event) {
-        // 如果源方块是火焰，并且目标位置也将变成火焰
-        if (event.getSource().getType() == Material.FIRE &&
-                event.getNewState().getType() == Material.FIRE) {
-
-            // 取消蔓延
+        // 源是火焰，就取消（无论目标是什么）
+        if (event.getSource().getType() == Material.FIRE) {
             event.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent event) {
+        // 任何点火都取消
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockBurn(BlockBurnEvent event) {
+        // 防止方块被烧掉
+        event.setCancelled(true);
+    }
+
+
+
 
     //  防止树叶自然衰减/消失
     @EventHandler
