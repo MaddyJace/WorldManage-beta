@@ -1,0 +1,12 @@
+world_1:
+  worldNane: world
+  # 特殊
+  rules:
+    flameSpread: true
+
+
+  type: circle
+  radius: 30
+  coordinates: "x:0 y:10 z:0"
+  message: "处于保护区内无法破坏"
+

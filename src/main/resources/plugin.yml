@@ -1,0 +1,3 @@
+name: WorldManage
+version: '${project.version}'
+main: com.maddyjace.worldmanage.WorldManage
