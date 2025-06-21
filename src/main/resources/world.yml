@@ -1,0 +1,31 @@
+world_1:
+  # 世界名称
+  worldNane: world
+  # 全局规则(该规则针对整个世界，不论有没有权限规则始终生效)
+  globalRules:
+    # 是否防止火焰传播
+    flameSpread: true
+    # 是否防止树叶自然消失
+    leavesDecay: true
+    # 是否防止方块或实体点燃方块(实体不包含 玩家)
+    blockIgnite: true
+    # 是否阻止 实体破坏方块(实体不包含 玩家)
+    blockBreak: ture
+
+  # 权限(拥有权限绕过规则)
+  permission: "wm.world_1"
+  # 玩家规则(该规则针对玩家，拥有权限将不会阻止玩家)
+  playerRules:
+    # 是否防止玩家点燃方块
+    blockIgnite: true
+
+
+
+
+
+
+
+  type: circle
+  radius: 30
+  coordinates: "x:0 y:10 z:0"
+  message: "处于保护区内无法破坏"

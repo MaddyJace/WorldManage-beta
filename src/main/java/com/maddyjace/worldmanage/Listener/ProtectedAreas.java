@@ -29,38 +29,8 @@ public class ProtectedAreas implements Listener {
 
         System.out.println(playerName + " 破坏了一个方块：" + blockType);
 
-
     }
 
-
-    @EventHandler
-    public void onBlockSpread(BlockSpreadEvent event) {
-        // 源是火焰，就取消（无论目标是什么）
-        if (event.getSource().getType() == Material.FIRE) {
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onBlockIgnite(BlockIgniteEvent event) {
-        // 任何点火都取消
-        event.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onBlockBurn(BlockBurnEvent event) {
-        // 防止方块被烧掉
-        event.setCancelled(true);
-    }
-
-
-
-
-    //  防止树叶自然衰减/消失
-    @EventHandler
-    public void onLeavesDecay(LeavesDecayEvent event) {
-        event.setCancelled(true);
-    }
 
     public static boolean isInRange(Location center, Location current, int radius) {
         if (center == null || current == null) return false;
