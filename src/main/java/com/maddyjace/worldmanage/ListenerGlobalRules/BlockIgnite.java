@@ -1,4 +1,4 @@
-package com.maddyjace.worldmanage.Listener;
+package com.maddyjace.worldmanage.ListenerGlobalRules;
 
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
 import org.bukkit.World;
@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockIgniteEvent;
 
+// 该类监听实体点燃方块
 public class BlockIgnite implements Listener {
 
     @EventHandler

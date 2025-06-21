@@ -9,23 +9,95 @@ world_1:
     leavesDecay: true
     # 是否防止方块或实体点燃方块(实体不包含 玩家)
     blockIgnite: true
-    # 是否阻止 实体破坏方块(实体不包含 玩家)
-    blockBreak: ture
+    # 是否阻止实体破坏方块
+    entityBlockBreak: true
+  # 玩家规则(该规则针对玩家，拥有权限将不会阻止玩家)
+  playerRules:
+    # 权限(拥有权限绕过规则)
+    permission: "wm.world"
+    # 是否防止玩家点燃方块
+    blockIgnite: true
+    # 是否阻止破坏方块
+    blockBreak: true
+    # 是否阻止放置方块
+    blockPlace: true
+    # 是否阻止玩家捡物品
+    itemPickup: true
+    # 是否阻止玩家扔物品
+    itemDrop: true
+    # 是否阻止玩家使用桶
+    usePail: true
+    # 是否阻止玩家饥饿
+    food: true
+    # 是否恢复玩家的饥饿度为满
+    foodSatiety: true
+    # 是否阻止玩家受伤
+    playerDamage: true
+    # 是否阻止玩家进入任何传送门(开启后portalNether和portalEnder会失效)
+    portalAll: true
+    # 是否阻止玩家进入地狱传送门
+    portalNether: false
+    # 是否阻止玩家进入末地传送门
+    portalEnder: false
+    # 是否阻止玩家右键使用物品
+    playerUseItem: true
+    # 是否阻止玩家与特定实体右键交互
+    PlayerInteractEntity:
+      #  - BLACKLIST（黑名单模式：阻止列出的实体）
+      #  - WHITELIST（白名单模式：只允许列出的实体）
+      type: BLACKLIST
+      list:
+        - "ITEM_FRAME"  # 物品展示框
+        - "PAINTING"    # 画
+        - "ARMOR_STAND" # 盔甲架
 
+
+world_2:
+  # 世界名称
+  worldNane: world_nether
+  # 全局规则(该规则针对整个世界，不论有没有权限规则始终生效)
+  globalRules:
+    # 是否防止火焰传播
+    flameSpread: true
+    # 是否防止树叶自然消失
+    leavesDecay: false
+    # 是否防止方块或实体点燃方块(实体不包含 玩家)
+    blockIgnite: true
+    # 是否阻止实体破坏方块
+    entityBlockBreak: true
   # 权限(拥有权限绕过规则)
-  permission: "wm.world_1"
+  permission: "wm.world_nether"
   # 玩家规则(该规则针对玩家，拥有权限将不会阻止玩家)
   playerRules:
     # 是否防止玩家点燃方块
     blockIgnite: true
-
-
-
-
-
-
-
-  type: circle
-  radius: 30
-  coordinates: "x:0 y:10 z:0"
-  message: "处于保护区内无法破坏"
+    # 是否阻止破坏方块
+    blockBreak: true
+    # 是否阻止放置方块
+    blockPlace: true
+    # 是否阻止玩家捡物品
+    itemPickup: true
+    # 是否阻止玩家扔物品
+    itemDrop: true
+    # 是否阻止玩家使用桶
+    usePail: true
+    # 是否阻止玩家饥饿
+    food: true
+    # 是否恢复玩家的饥饿度为满
+    foodSatiety: true
+    # 是否阻止玩家受伤
+    playerDamage: true
+    # 是否阻止玩家进入任何传送门(开启后portalNether和portalEnder会失效)
+    portalAll: false
+    # 是否阻止玩家进入地狱传送门
+    portalNether: false
+    # 是否阻止玩家进入末地传送门
+    portalEnder: false
+    # 是否阻止玩家右键使用物品
+    playerUseItem: true
+    # 是否阻止玩家与特定实体右键交互
+    PlayerInteractEntity:
+      #  - BLACKLIST（黑名单模式：阻止列出的实体）
+      #  - WHITELIST（白名单模式：只允许列出的实体）
+      type: WHITELIST
+      list: {}

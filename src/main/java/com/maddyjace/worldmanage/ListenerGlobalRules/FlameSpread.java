@@ -1,9 +1,8 @@
-package com.maddyjace.worldmanage.Listener;
+package com.maddyjace.worldmanage.ListenerGlobalRules;
 
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBurnEvent;
