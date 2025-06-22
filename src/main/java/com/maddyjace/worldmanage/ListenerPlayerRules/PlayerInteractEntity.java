@@ -24,10 +24,7 @@ public class PlayerInteractEntity implements Listener {
         if(WorldFile.INSTANCE.playerRulesList(world.getName(), "playerRules", player,
                 "PlayerInteractEntity", entityName)) {
             event.setCancelled(true);
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("PlayerInteractEntityMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerInteractEntityMessage"));
-            }
+
         }
 
     }
@@ -45,7 +42,8 @@ public class PlayerInteractEntity implements Listener {
             event.setCancelled(true);
             MessageFile getMessage = MessageFile.INSTANCE;
             if(getMessage.getMessage("PlayerInteractEntityMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerInteractEntityMessage"));
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f: " + getMessage.getMessage("PlayerInteractEntityMessage"));
             }
         }
     }

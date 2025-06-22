@@ -23,7 +23,8 @@ public class PlayerDamage implements Listener {
                 event.setCancelled(true);
                 MessageFile getMessage = MessageFile.INSTANCE;
                 if(getMessage.getMessage("PlayerDamageMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerDamageMessage"));
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                            "&f: " + getMessage.getMessage("PlayerDamageMessage"));
                 }
             }
         }

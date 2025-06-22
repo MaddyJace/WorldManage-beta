@@ -2,6 +2,7 @@ package com.maddyjace.worldmanage.ListenerPlayerRules;
 
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
+
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -11,9 +12,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.util.Vector;
 
+
 // 该类用于阻止进入传送门
 public class PlayerPortal implements Listener {
-
 
     @EventHandler
     public void onPlayerPortal(PlayerPortalEvent event) {
@@ -25,9 +26,12 @@ public class PlayerPortal implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"portalAll", player)) {
             event.setCancelled(true);
             pushAwayPlayer(player);
+
             if(getMessage.getMessage("PortalAllMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalAllMessage"));
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f:" +getMessage.getMessage("PortalAllMessage"));
             }
+
             return;
         }
 
@@ -39,17 +43,24 @@ public class PlayerPortal implements Listener {
         if(type == Material.PORTAL && portalNether) {
             event.setCancelled(true);
             pushAwayPlayer(player);
+
             if(getMessage.getMessage("PortalNetherMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalNetherMessage"));
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f:" + getMessage.getMessage("PortalNetherMessage"));
             }
+
         }
         boolean portalEnder = WorldFile.INSTANCE.playerRules(world.getName(), "portalEnder", player);
         if(type == Material.ENDER_PORTAL && portalEnder) {
             event.setCancelled(true);
             pushAwayPlayer(player);
+
             if(getMessage.getMessage("PortalEnderMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalEnderMessage"));
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f: " + getMessage.getMessage("PortalEnderMessage"));
             }
+
+
         }
 
     }

@@ -2,11 +2,13 @@ package com.maddyjace.worldmanage.ListenerPlayerRules;
 
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 // 取消饥饿度减少事件
 public class FoodLevelChange implements Listener {
@@ -20,14 +22,22 @@ public class FoodLevelChange implements Listener {
                 event.setCancelled(true);
                 MessageFile getMessage = MessageFile.INSTANCE;
                 if(getMessage.getMessage("FoodLevelChangeMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("FoodLevelChangeMessage"));
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                            "&f: " + getMessage.getMessage("FoodLevelChangeMessage"));
                 }
             }
+
             if(WorldFile.INSTANCE.playerRules(world.getName(),"foodSatiety", player)) {
-                player.setFoodLevel(20);
+
+                Bukkit.getScheduler().runTaskLater(
+                        JavaPlugin.getProvidingPlugin(this.getClass()),
+                        () -> player.setFoodLevel(20), 1L // 延迟1tick确保事件已处理完
+                );
+
                 MessageFile getMessage = MessageFile.INSTANCE;
                 if(getMessage.getMessage("FoodSatietyMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("FoodSatietyMessage"));
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                            "&f: " + getMessage.getMessage("FoodSatietyMessage"));
                 }
             }
         }

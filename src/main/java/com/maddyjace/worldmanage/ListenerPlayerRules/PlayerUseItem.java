@@ -29,7 +29,8 @@ public class PlayerUseItem implements Listener {
 
                 MessageFile getMessage = MessageFile.INSTANCE;
                 if(getMessage.getMessage("PlayerUseItemMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerUseItemMessage"));
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                            "&f:" + getMessage.getMessage("PlayerUseItemMessage"));
                 }
 
 
@@ -55,7 +56,8 @@ public class PlayerUseItem implements Listener {
 
                     MessageFile getMessage = MessageFile.INSTANCE;
                     if(getMessage.getMessage("PlayerInteractBlockMessage") != null) {
-                        MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerInteractBlockMessage"));
+                        MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                                "&f:" + getMessage.getMessage("PlayerInteractBlockMessage"));
                     }
 
 
@@ -81,7 +83,8 @@ public class PlayerUseItem implements Listener {
 
                 MessageFile getMessage = MessageFile.INSTANCE;
                 if(getMessage.getMessage("PlayerTriggerBlockMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerTriggerBlockMessage"));
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                            "&f: " + getMessage.getMessage("PlayerTriggerBlockMessage"));
                 }
 
 

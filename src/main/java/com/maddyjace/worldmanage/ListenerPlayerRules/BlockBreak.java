@@ -21,7 +21,7 @@ public class BlockBreak implements Listener {
             MessageFile getMessage = MessageFile.INSTANCE;
             if(getMessage.getMessage("BlockBreakMessage") != null) {
                 MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f:" + getMessage.getMessage("BlockBreakMessage"));
+                        "&f: " + getMessage.getMessage("BlockBreakMessage"));
             }
 
         }
