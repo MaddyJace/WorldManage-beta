@@ -19,15 +19,15 @@ public class FoodLevelChange implements Listener {
             if(WorldFile.INSTANCE.playerRules(world.getName(),"food", player)) {
                 event.setCancelled(true);
                 MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("foodMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("foodMessage"));
+                if(getMessage.getMessage("FoodLevelChangeMessage") != null) {
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("FoodLevelChangeMessage"));
                 }
             }
             if(WorldFile.INSTANCE.playerRules(world.getName(),"foodSatiety", player)) {
                 player.setFoodLevel(20);
                 MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("foodSatietyMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("foodSatietyMessage"));
+                if(getMessage.getMessage("FoodSatietyMessage") != null) {
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("FoodSatietyMessage"));
                 }
             }
         }

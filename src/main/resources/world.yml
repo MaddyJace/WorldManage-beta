@@ -39,8 +39,83 @@ world_1:
     portalNether: false
     # 是否阻止玩家进入末地传送门
     portalEnder: false
-    # 是否阻止玩家右键使用物品
-    playerUseItem: true
+
+
+    # 由于插件基于1.12开发，阻止使用物品没有明确分类
+    # 是否阻止玩家右键使用物品(需要您自己去配置物品列表！)
+    playerUseItem:
+      #  - BLACKLIST（黑名单模式：阻止列出的实体）
+      #  - WHITELIST（白名单模式：只允许列出的实体）
+      type: BLACKLIST
+      list:
+        # 投掷类物品
+        - "ENDER_PEARL"             # 末影珍珠（可传送）
+        - "SNOWBALL"                # 雪球（可投掷）
+        - "EGG"                     # 鸡蛋（可投掷）
+        - "FIRE_CHARGE"             # 火焰弹（点火或发射）
+        - "SPLASH_POTION"           # 飞溅药水
+        - "LINGERING_POTION"        # 滞留药水
+        - "BOTTLE_O_ENCHANTING"     # 经验瓶
+        - "EXP_BOTTLE"              # 经验瓶(1.12)
+
+        # 药水类
+        - "POTION"                  # 药水
+
+        # 生物蛋类
+        - "MONSTER_EGG"             # 生物蛋
+        - "ITEM_FRAME"              # 物品展示框
+        - "PAINTING"                # 画
+        - "ARMOR_STAND"             # 盔甲架
+
+        # 武器类（远程）
+        - "BOW"                     # 弓
+        - "CROSSBOW"                # 弩
+        - "FIREWORK_ROCKET"         # 烟花（可用于推进鞘翅）
+        - "TRIDENT"                 # 三叉戟（可投掷）
+
+        # 钓鱼与特定物品
+        - "CARROT_ON_A_STICK"        # 胡萝卜钓竿（骑猪用）
+        - "WARPED_FUNGUS_ON_A_STICK" # 扭曲菌钓竿（骑炽足兽用）
+        - "FISHING_ROD"              # 钓鱼竿
+
+        # 桶类
+        - "BUCKET"                  # 空桶
+        - "WATER_BUCKET"            # 装水桶
+        - "LAVA_BUCKET"             # 岩浆桶
+        - "MILK_BUCKET"             # 牛奶桶（解除效果）
+
+        # 点火与辅助物品
+        - "FLINT_AND_STEEL"         # 打火石（点火）
+        - "BONE_MEAL"               # 骨粉（催熟作物）
+        - "EYE_OF_ENDER"            # 末影之眼（寻找要塞）
+        - "END_CRYSTAL"             # 末影水晶（召唤龙）
+        - "LEAD"                    # 拴绳
+        - "ELYTRA"                  # 鞘翅（右键装备触发）
+        - "GOAT_HORN"               # 山羊角（吹号角）
+        - "BRUSH"                   # 刷子（考古）
+
+        # 食物类（可以右键食用）
+        - "APPLE"                   # 苹果
+        - "BREAD"                   # 面包
+        - "COOKED_BEEF"             # 熟牛肉
+        - "COOKED_CHICKEN"          # 熟鸡肉
+        - "COOKED_PORKCHOP"         # 熟猪排
+        - "COOKED_MUTTON"           # 熟羊肉
+        - "COOKED_RABBIT"           # 熟兔肉
+        - "COOKED_COD"              # 熟鳕鱼
+        - "COOKED_SALMON"           # 熟三文鱼
+        - "PUMPKIN_PIE"             # 南瓜派
+        - "COOKIE"                  # 曲奇
+        - "MELON_SLICE"             # 西瓜片
+        - "CARROT"                  # 胡萝卜
+        - "BAKED_POTATO"            # 烤土豆
+        - "MUSHROOM_STEW"           # 蘑菇炖汤
+        - "RABBIT_STEW"             # 兔肉炖汤
+        - "BEETROOT_SOUP"           # 甜菜汤
+        - "HONEY_BOTTLE"            # 蜂蜜瓶
+        - "SUSPICIOUS_STEW"         # 可疑炖汤
+
+
     # 是否阻止玩家与特定实体右键交互
     PlayerInteractEntity:
       #  - BLACKLIST（黑名单模式：阻止列出的实体）
@@ -52,52 +127,40 @@ world_1:
         - "ARMOR_STAND" # 盔甲架
 
 
-world_2:
-  # 世界名称
-  worldNane: world_nether
-  # 全局规则(该规则针对整个世界，不论有没有权限规则始终生效)
-  globalRules:
-    # 是否防止火焰传播
-    flameSpread: true
-    # 是否防止树叶自然消失
-    leavesDecay: false
-    # 是否防止方块或实体点燃方块(实体不包含 玩家)
-    blockIgnite: true
-    # 是否阻止实体破坏方块
-    entityBlockBreak: true
-  # 权限(拥有权限绕过规则)
-  permission: "wm.world_nether"
-  # 玩家规则(该规则针对玩家，拥有权限将不会阻止玩家)
-  playerRules:
-    # 是否防止玩家点燃方块
-    blockIgnite: true
-    # 是否阻止破坏方块
-    blockBreak: true
-    # 是否阻止放置方块
-    blockPlace: true
-    # 是否阻止玩家捡物品
-    itemPickup: true
-    # 是否阻止玩家扔物品
-    itemDrop: true
-    # 是否阻止玩家使用桶
-    usePail: true
-    # 是否阻止玩家饥饿
-    food: true
-    # 是否恢复玩家的饥饿度为满
-    foodSatiety: true
-    # 是否阻止玩家受伤
-    playerDamage: true
-    # 是否阻止玩家进入任何传送门(开启后portalNether和portalEnder会失效)
-    portalAll: false
-    # 是否阻止玩家进入地狱传送门
-    portalNether: false
-    # 是否阻止玩家进入末地传送门
-    portalEnder: false
-    # 是否阻止玩家右键使用物品
-    playerUseItem: true
-    # 是否阻止玩家与特定实体右键交互
-    PlayerInteractEntity:
+    # 是否阻止玩家与方块交互
+    PlayerInteractBlock:
       #  - BLACKLIST（黑名单模式：阻止列出的实体）
       #  - WHITELIST（白名单模式：只允许列出的实体）
-      type: WHITELIST
-      list: {}
+      type: BLACKLIST
+      list:
+        - "SPRUCE_FENCE_GATE"
+        - "BIRCH_FENCE_GATE"
+        - "JUNGLE_FENCE_GATE"
+        - "DARK_OAK_FENCE_GATE"
+        - "ACACIA_FENCE_GATE"
+        - "FENCE_GATE"
+
+        - "FLOWER_POT"
+        - "DISPENSER"
+        - "DROPPER"
+        - "HOPPER"
+        - "TRAP_DOOR"
+        - "SPRUCE_DOOR"
+        - "BIRCH_DOOR"
+        - "JUNGLE_DOOR"
+        - "ACACIA_DOOR"
+
+        - "DARK_OAK_DOOR"
+        - "TRAPPED_CHEST"
+        - "LEVER"
+        - "STONE_BUTTON"
+        - "WOOD_BUTTON"
+        - "DAYLIGHT_DETECTOR"
+        - "FURNACE"
+        - "CHEST"
+        - "BEACON"
+
+        - "BREWING_STAND"
+        - "CAULDRON"
+
+    PlayerTriggerBlock:

@@ -2,6 +2,7 @@ package com.maddyjace.worldmanage.Commands;
 
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,10 +27,11 @@ public class Commands implements CommandExecutor, TabCompleter {
             case "reload":
                 WorldFile.INSTANCE.reload();
                 MessageFile.INSTANCE.reload();
-                MessageFile.sendMessageToTheConsole(getMessage.getMessage("pluginsName") + ": " + getMessage.getMessage("reload"));
+
+                sender.sendMessage(ChatColor.DARK_GRAY + "[AdvancedCommandBlocker]: " + ChatColor.GREEN + getMessage.getMessage("Reload"));
                 return true;
             default:
-                MessageFile.sendMessageToTheConsole(getMessage.getMessage("pluginsName") + ": " + getMessage.getMessage("commandCorrectUsage"));
+                sender.sendMessage(ChatColor.DARK_GRAY + "[AdvancedCommandBlocker]: " + ChatColor.DARK_RED + getMessage.getMessage("CommandCorrectUsage"));
                 return true;
 
         }

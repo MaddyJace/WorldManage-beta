@@ -19,8 +19,8 @@ public class ItemPickup implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"itemPickup", player)) {
             event.setCancelled(true);
             MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("itemPickupMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("itemPickupMessage"));
+            if(getMessage.getMessage("ItemPickupMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("ItemPickupMessage"));
             }
         }
     }

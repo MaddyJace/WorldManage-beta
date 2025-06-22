@@ -1,5 +1,6 @@
-package com.maddyjace.worldmanage.ListenerGlobalRules;
+package com.maddyjace.worldmanage.ListenerPlayerRules;
 
+import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -12,14 +13,20 @@ public class BlockIgnite implements Listener {
 
     @EventHandler
     public void onBlockIgnite(BlockIgniteEvent event) {
-
+        Player player = event.getPlayer();
         World world = event.getBlock().getWorld();
         if(WorldFile.INSTANCE.globalRules(world.getName(),"blockIgnite")) {
-            Player player = event.getPlayer();
             if(player != null && !WorldFile.INSTANCE.playerRules(world.getName(),"blockIgnite", player)) {
                 return;
             }
             event.setCancelled(true);
+
+            MessageFile getMessage = MessageFile.INSTANCE;
+            if(getMessage.getMessage("BlockIgniteMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f: " + getMessage.getMessage("BlockIgniteMessage"));
+            }
+
         }
 
     }

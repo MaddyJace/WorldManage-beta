@@ -24,8 +24,8 @@ public class PlayerBucketEmpty implements Listener {
             if (bucket.name().endsWith("_BUCKET")) {
                 event.setCancelled(true);
                 MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("usePailMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("usePailMessage"));
+                if(getMessage.getMessage("PlayerBucketEmptyMessage") != null) {
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerBucketEmptyMessage"));
                 }
             }
         }
@@ -41,8 +41,8 @@ public class PlayerBucketEmpty implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"usePail", player)) {
             event.setCancelled(true);
             MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("usePailMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("usePailMessage"));
+            if(getMessage.getMessage("PlayerBucketEmptyMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerBucketEmptyMessage"));
             }
         }
 

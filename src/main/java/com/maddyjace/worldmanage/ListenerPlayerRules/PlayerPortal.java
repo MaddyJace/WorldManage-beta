@@ -25,8 +25,8 @@ public class PlayerPortal implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"portalAll", player)) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-            if(getMessage.getMessage("portalAllMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("portalAllMessage"));
+            if(getMessage.getMessage("PortalAllMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalAllMessage"));
             }
             return;
         }
@@ -39,16 +39,16 @@ public class PlayerPortal implements Listener {
         if(type == Material.PORTAL && portalNether) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-            if(getMessage.getMessage("portalNetherMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("portalNetherMessage"));
+            if(getMessage.getMessage("PortalNetherMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalNetherMessage"));
             }
         }
         boolean portalEnder = WorldFile.INSTANCE.playerRules(world.getName(), "portalEnder", player);
         if(type == Material.ENDER_PORTAL && portalEnder) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-            if(getMessage.getMessage("portalEnderMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("portalEnderMessage"));
+            if(getMessage.getMessage("PortalEnderMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PortalEnderMessage"));
             }
         }
 

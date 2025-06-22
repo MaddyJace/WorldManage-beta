@@ -26,17 +26,6 @@ public final class WorldManage extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
-        // 初始化 world.yml 类
-        WorldFile.INSTANCE.initialize(this);
-        // 初始化 message.yml 类
-        MessageFile.INSTANCE.initialize(this,Bukkit.getPluginManager().getPlugin("PlaceholderAPI"));
-
-        // 注册 命令 和 Tab键 监听器
-        Commands commandHandler = new Commands();
-        this.getCommand("worldmanage").setExecutor(commandHandler);     // 命令
-        this.getCommand("worldmanage").setTabCompleter(commandHandler); // Tab
-
-
 
         // 注册 点燃方块 监听器
         getServer().getPluginManager().registerEvents(new BlockIgnite(), this);
@@ -66,6 +55,17 @@ public final class WorldManage extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInteractEntity(), this);
         // 注册 实体破坏方块 监听器
         getServer().getPluginManager().registerEvents(new EntityBlockBreak(), this);
+
+
+        // 初始化 world.yml 类
+        WorldFile.INSTANCE.initialize(this);
+        // 初始化 message.yml 类
+        MessageFile.INSTANCE.initialize(this,Bukkit.getPluginManager().getPlugin("PlaceholderAPI"));
+
+        // 注册 命令 和 Tab键 监听器
+        Commands commandHandler = new Commands();
+        this.getCommand("worldmanage").setExecutor(commandHandler);     // 命令
+        this.getCommand("worldmanage").setTabCompleter(commandHandler); // Tab
 
         Bukkit.getConsoleSender().sendMessage("§b§l");
         Bukkit.getConsoleSender().sendMessage("§b§l");

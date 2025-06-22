@@ -72,8 +72,8 @@ public enum WorldFile {
             ConfigurationSection section = worldFile.getConfigurationSection(worldName);
             try {
                 String world = section.getString("worldNane");
-                String permission = section.getString("permission");
-                ConfigurationSection global = section.getConfigurationSection("playerRules");
+                ConfigurationSection global = section.getConfigurationSection(playerRulesType);
+                String permission = global.getString("permission");
                 if(!hasPermission(player, permission) && world.equals(currentWorldName)) {
                     ConfigurationSection playerRules = global.getConfigurationSection(playerRulesTypeRulesName);
                     String rulesType = playerRules.getString("type").toLowerCase();

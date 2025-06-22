@@ -1,5 +1,6 @@
 package com.maddyjace.worldmanage.ListenerGlobalRules;
 
+import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -28,6 +29,7 @@ public class FlameSpread implements Listener {
         if(WorldFile.INSTANCE.globalRules(world.getName(),"flameSpread")) {
             // 防止方块被烧掉
             event.setCancelled(true);
+
         }
     }
 

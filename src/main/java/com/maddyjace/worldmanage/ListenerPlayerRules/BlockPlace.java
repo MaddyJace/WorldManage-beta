@@ -21,8 +21,8 @@ public class BlockPlace implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"blockPlace", player)) {
             event.setCancelled(true);
             MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("blockPlaceMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("blockPlaceMessage"));
+            if(getMessage.getMessage("BlockPlaceMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("BlockPlaceMessage"));
             }
         }
 

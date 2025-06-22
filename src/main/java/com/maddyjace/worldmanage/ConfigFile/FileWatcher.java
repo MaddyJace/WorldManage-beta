@@ -52,19 +52,19 @@ public class FileWatcher {
             // 创建
             @Override
             public void onFileCreate(File file) {
-                onFileChanged(file, "Create");
+                onFileChanged(file);
             }
 
             // 修改
             @Override
             public void onFileChange(File file) {
-                onFileChanged(file, "Modify");
+                onFileChanged(file);
             }
 
             // 删除
             @Override
             public void onFileDelete(File file) {
-                onFileChanged(file, "Delete");
+                onFileChanged(file);
             }
         });
 
@@ -80,22 +80,22 @@ public class FileWatcher {
 
 
     // 处理逻辑方法
-    private void onFileChanged(File file, String action) {
+    private void onFileChanged(File file) {
         MessageFile getMessage = MessageFile.INSTANCE;
 
         if(file.getName().equals("world.yml")) {
             WorldFile.INSTANCE.reload();
-            MessageFile.sendMessageToTheConsole(getMessage.getMessage("pluginsName") + ": " + getMessage.getMessage("reload"));
+            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
         }
 
         if(file.getName().equals("message.yml")) {
             MessageFile.INSTANCE.reload();
-            MessageFile.sendMessageToTheConsole(getMessage.getMessage("pluginsName") + ": " + getMessage.getMessage("reload"));
+            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
         }
 
         if(file.getName().equals("config.yml")) {
             MessageFile.INSTANCE.reload();
-            MessageFile.sendMessageToTheConsole(getMessage.getMessage("pluginsName") + ": " + getMessage.getMessage("reload"));
+            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
         }
     }
 

@@ -1,33 +1,21 @@
-pluginsName: "&8[&aWorld&cManage&7]&f"
-reload: "&aConfiguration has been reloaded!"
-commandCorrectUsage: "&cCorrectUsage: /wm reload"
+PluginsName: "&8[&aWorld&cManage&8]&f"
+Reload: "Configuration has been reloaded!"
+CommandCorrectUsage: "CorrectUsage: /wm reload"
 
 # 防止玩家点燃方块 后给玩家的提示
-blockIgniteMessage: "你无法在该世界点燃方块！"
-# 阻止破坏方块 后给玩家的提示
-blockBreakMessage: "你无法在该世界破坏方块！"
-# 阻止放置方块 后给玩家的提示
-blockPlaceMessage: "你无法在该世界放置方块！"
-# 阻止玩家捡物品 后给玩家的提示
-itemPickupMessage: "你无法在该世界捡起物品！"
-# 阻止玩家扔物品 后给玩家的提示
-itemDropMessage: "你无法在该世界扔掉物品！"
-# 阻止玩家使用桶 后给玩家的提示
-usePailMessage: "你无法在该世界使用桶！"
-# 阻止玩家饥饿 后给玩家的提示
-foodMessage: "你饥饿了，但世界规则不允许你饥饿！"
-# 恢复玩家的饥饿度 后给玩家的提示
-foodSatietyMessage: "恢复：饿度为满！"
-# 阻止玩家受伤 后给玩家的提示
-playerDamageMessage: "你永远不会受伤！"
-# 阻止玩家进入任何传送门 后给玩家的提示
-portalAllDamageMessage: "你不能使用传送门！"
-# 阻止玩家进入地狱传送门 后给玩家的提示
-portalNetherMessage: "你不能使用地狱传送门！"
-# 阻止玩家进入末地传送门 后给玩家的提示
-portalEnderMessage: "你不能使用地末地传送门！"
-# 阻止玩家右键使用物品 后给玩家的提示
-playerUseItemMessage: "你不能右键使用物品！"
-# 阻止玩家与特定实体右键交互 后给玩家的提示
-PlayerInteractEntityMessage: "你不能与实体交互！"
-
+BlockIgniteMessage: "&c你没有权限在这个世界点燃方块！"
+BlockBreakMessage: "&c你没有权限在这个世界破坏方块！"
+BlockPlaceMessage: "&c你没有权限在这个世界放置方块！"
+FoodLevelChangeMessage: "&c你在这个世界不会饥饿！"
+FoodSatietyMessage: "&c已你的恢复满饱食度！"
+ItemDropMessage: "&c你没有权限在这个世界扔出物品！"
+ItemPickupMessage: "&c你没有权限在这个世界拿起物品！"
+PlayerBucketEmptyMessage: "&c你没有权限在这个世界使用桶！"
+PlayerDamageMessage: "&c在这个世界里不会受伤！"
+PlayerInteractEntityMessage: "&c你没有权限在这个世界与实体交互！"
+PortalAllMessage: "&c你没有权限使用传送门传送！"
+PortalNetherMessage: "&c你没有权限使用这个世界的地狱传送门！"
+PortalEnderMessage: "&c你没有权限使用这个世界的末地传送门！"
+PlayerUseItemMessage: "&c你没有权限在这个世界使用物品！"
+PlayerInteractBlockMessage: "&c你没有权限在这个世界与方块交互！"
+PlayerTriggerBlockMessage: "&c你没有权限在这个世界触发方块！"

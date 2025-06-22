@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
+// 该类当玩家扔物品时处理
 public class ItemDrop implements Listener {
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent event) {
@@ -17,8 +18,8 @@ public class ItemDrop implements Listener {
         if(WorldFile.INSTANCE.playerRules(world.getName(),"itemDrop", player)) {
             event.setCancelled(true);
             MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("itemDropMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("itemDropMessage"));
+            if(getMessage.getMessage("ItemDropMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("ItemDropMessage"));
             }
 
         }

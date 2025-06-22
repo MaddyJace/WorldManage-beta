@@ -11,18 +11,19 @@ import org.bukkit.event.block.BlockBreakEvent;
 // 该类是监听器，监听玩家破坏方块
 public class BlockBreak implements Listener {
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
-
         Player player = event.getPlayer();
         World world = event.getBlock().getWorld();
         if(WorldFile.INSTANCE.playerRules(world.getName(),"blockBreak", player)) {
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("blockBreakMessage") != null) {
-
-            }
-            MessageFile.parsePlaceholders(player, getMessage.getMessage("blockBreakMessage"));
             event.setCancelled(true);
+
+            MessageFile getMessage = MessageFile.INSTANCE;
+            if(getMessage.getMessage("BlockBreakMessage") != null) {
+                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
+                        "&f:" + getMessage.getMessage("BlockBreakMessage"));
+            }
+
         }
 
     }

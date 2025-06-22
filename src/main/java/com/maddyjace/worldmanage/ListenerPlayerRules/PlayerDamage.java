@@ -22,8 +22,8 @@ public class PlayerDamage implements Listener {
             if(WorldFile.INSTANCE.playerRules(world.getName(),"playerDamage", player)) {
                 event.setCancelled(true);
                 MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("playerDamageMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("playerDamageMessage"));
+                if(getMessage.getMessage("PlayerDamageMessage") != null) {
+                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PlayerDamageMessage"));
                 }
             }
         }
@@ -38,10 +38,6 @@ public class PlayerDamage implements Listener {
             World world = player.getWorld();
             if(WorldFile.INSTANCE.playerRules(world.getName(),"playerDamage", player)) {
                 event.setCancelled(true);
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("playerDamageMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("playerDamageMessage"));
-                }
             }
         }
 
