@@ -16,15 +16,11 @@ public class BlockIgnite implements Listener {
         Player player = event.getPlayer();
         World world = event.getBlock().getWorld();
         if(WorldFile.INSTANCE.globalRules(world.getName(),"blockIgnite")) {
-            if(player != null && !WorldFile.INSTANCE.playerRules(world.getName(),"blockIgnite", player)) {
-                return;
-            }
+            if(player != null && !WorldFile.INSTANCE.playerRules(world.getName(),"blockIgnite", player)) { return; }
             event.setCancelled(true);
-
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("BlockIgniteMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("BlockIgniteMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("BlockIgniteMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("BlockIgniteMessage"));
             }
 
         }

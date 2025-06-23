@@ -1,7 +1,9 @@
 package com.maddyjace.worldmanage.ListenerPlayerRules;
 
+import com.maddyjace.worldmanage.ConfigFile.ConfigFile;
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -40,12 +42,17 @@ public class PlayerInteractEntity implements Listener {
         if(WorldFile.INSTANCE.playerRulesList(world.getName(), "playerRules", player,
                 "PlayerInteractEntity", entityName)) {
             event.setCancelled(true);
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("PlayerInteractEntityMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("PlayerInteractEntityMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("PlayerInteractEntityMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerInteractEntityMessage"));
             }
         }
+
+        // 调试模式: 向控制台返回被交互的实体名称
+        if(ConfigFile.getConfig("getEntityName") && MessageFile.getMessage("getEntityNameMessage") != null && player.isOp()) {
+            Bukkit.getConsoleSender().sendMessage(MessageFile.setColors(MessageFile.getMessage("getEntityNameMessage")));
+        }
+
     }
 
 

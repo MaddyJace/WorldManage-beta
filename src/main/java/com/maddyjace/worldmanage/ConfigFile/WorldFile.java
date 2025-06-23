@@ -1,6 +1,5 @@
 package com.maddyjace.worldmanage.ConfigFile;
 
-import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -16,9 +15,6 @@ public enum WorldFile {
     private Plugin plugin;
 
     private FileConfiguration worldFile;
-
-    private Location location;
-    private String rules;
 
 
     // 需要在 onEnable() 初始化该 initialize 方法

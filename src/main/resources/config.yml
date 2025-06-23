@@ -1,3 +1,9 @@
-# Commands for the AdvancedCommandBlocker plugin
-# /acb reload – Reload the configuration!
-# /advancedcommandblocker reload - Reload the configuration!
+# 自动重载配置文件
+autoReload: true
+
+# 当你是管理员并使用物品时，在控制台输出物品名称！
+getItemNane: true
+# 当你是管理员并交互方块时，在控制台输出方块名称！
+getBlockName: true
+# 当你是管理员并交互实体时，在控制台输出实体名称！
+getEntityName: true

@@ -21,15 +21,13 @@ public class PlayerPortal implements Listener {
 
         Player player = event.getPlayer(); // 玩家名称
         World world = player.getWorld();   // 玩家所在世界名称
-        MessageFile getMessage = MessageFile.INSTANCE;
         // 当 portalAll: true 时阻止所有传送
         if(WorldFile.INSTANCE.playerRules(world.getName(),"portalAll", player)) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-
-            if(getMessage.getMessage("PortalAllMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f:" +getMessage.getMessage("PortalAllMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("PortalAllMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("PortalAllMessage"));
             }
 
             return;
@@ -37,27 +35,26 @@ public class PlayerPortal implements Listener {
 
         Block block = player.getLocation().getBlock(); // 玩家所在位置的方块
         Material type = block.getType();               // 所在位置的方块类型
+
         // 当 portalAll: false 时阻止特定传送
         boolean portalNether = WorldFile.INSTANCE.playerRules(world.getName(),"portalNether", player);
-
         if(type == Material.PORTAL && portalNether) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-
-            if(getMessage.getMessage("PortalNetherMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f:" + getMessage.getMessage("PortalNetherMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("PortalNetherMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("PortalNetherMessage"));
             }
 
         }
+
         boolean portalEnder = WorldFile.INSTANCE.playerRules(world.getName(), "portalEnder", player);
         if(type == Material.ENDER_PORTAL && portalEnder) {
             event.setCancelled(true);
             pushAwayPlayer(player);
-
-            if(getMessage.getMessage("PortalEnderMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("PortalEnderMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("PortalEnderMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("PortalEnderMessage"));
             }
 
 

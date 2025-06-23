@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 
-
+@SuppressWarnings("ALL")
 public class ProtectedAreas implements Listener {
 
     @EventHandler

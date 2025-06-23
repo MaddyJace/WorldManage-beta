@@ -1,6 +1,5 @@
 package com.maddyjace.worldmanage.ListenerGlobalRules;
 
-import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
 import org.bukkit.Material;
 import org.bukkit.World;

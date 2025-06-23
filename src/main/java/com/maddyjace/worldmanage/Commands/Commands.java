@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@SuppressWarnings("ALL")
 public class Commands implements CommandExecutor, TabCompleter {
 
     @Override
@@ -22,16 +23,24 @@ public class Commands implements CommandExecutor, TabCompleter {
         }
 
         String subCommand = args[0].toLowerCase();
-        MessageFile getMessage = MessageFile.INSTANCE;
         switch (subCommand) {
             case "reload":
                 WorldFile.INSTANCE.reload();
                 MessageFile.INSTANCE.reload();
+                // sender.sendMessage(ChatColor.DARK_GRAY + "[WorldManage]: " + ChatColor.GREEN + MessageFile.getMessage("Reload"));
+                if(MessageFile.getMessage("PluginsName") != null && MessageFile.getMessage("Reload") != null) {
+                    sender.sendMessage(MessageFile.setColors(MessageFile.getMessage("PluginsName")) +
+                            MessageFile.setColors(MessageFile.getMessage("Reload")));
+                }
 
-                sender.sendMessage(ChatColor.DARK_GRAY + "[AdvancedCommandBlocker]: " + ChatColor.GREEN + getMessage.getMessage("Reload"));
+
                 return true;
             default:
-                sender.sendMessage(ChatColor.DARK_GRAY + "[AdvancedCommandBlocker]: " + ChatColor.DARK_RED + getMessage.getMessage("CommandCorrectUsage"));
+                // sender.sendMessage(ChatColor.DARK_GRAY + "[WorldManage]: " + ChatColor.DARK_RED + MessageFile.getMessage("CommandCorrectUsage"));
+                if(MessageFile.getMessage("PluginsName") != null && MessageFile.getMessage("CommandCorrectUsage") != null) {
+                    sender.sendMessage(MessageFile.setColors(MessageFile.getMessage("PluginsName")) +
+                            MessageFile.setColors(MessageFile.getMessage("CommandCorrectUsage")));
+                }
                 return true;
 
         }

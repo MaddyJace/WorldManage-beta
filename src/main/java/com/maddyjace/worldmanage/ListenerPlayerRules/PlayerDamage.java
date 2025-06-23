@@ -21,10 +21,9 @@ public class PlayerDamage implements Listener {
             World world = player.getWorld();
             if(WorldFile.INSTANCE.playerRules(world.getName(),"playerDamage", player)) {
                 event.setCancelled(true);
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("PlayerDamageMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f: " + getMessage.getMessage("PlayerDamageMessage"));
+                // 取消事件后向玩家发送提示信息
+                if(MessageFile.getMessage("PlayerDamageMessage") != null) {
+                    MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerDamageMessage"));
                 }
             }
         }

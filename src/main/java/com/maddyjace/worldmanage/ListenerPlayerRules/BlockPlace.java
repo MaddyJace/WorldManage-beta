@@ -20,10 +20,9 @@ public class BlockPlace implements Listener {
         World world = event.getBlock().getWorld();
         if(WorldFile.INSTANCE.playerRules(world.getName(),"blockPlace", player)) {
             event.setCancelled(true);
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("BlockPlaceMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("BlockPlaceMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("BlockPlaceMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("BlockPlaceMessage"));
             }
         }
 

@@ -1,11 +1,12 @@
 package com.maddyjace.worldmanage.ConfigFile;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
@@ -29,44 +30,55 @@ public enum MessageFile {
         initialize(plugin, placeholderAPI);
     }
 
+    // 设置颜色
+    public static String setColors(String message) {
+        return message.replace("&", "§");
+    }
+
+    // 获取 messageFile 对象
+    public YamlConfiguration getMessageFile() {
+        return messageFile;
+    }
+
+    // 读取配置文件
+    public static String getMessage(String message) {
+        if(message != null) {
+            return MessageFile.INSTANCE.getMessageFile().getString(message);
+        }
+        return null;
+    }
+
+    // 检查PlaceholderAPI是否已安装
     public boolean isPlaceholderAPILoaded() {
         return placeholderAPI != null;
     }
-
+    // 解析PlaceholderAPI的占位符
     public static void parsePlaceholders(Player player, String input) {
         if(input != null) {
-
-            // 检查是否安装 PlaceholderAPI
             if(MessageFile.INSTANCE.isPlaceholderAPILoaded()) {
-                // 解析PaPi占位符
-                String parsedPaPi = PlaceholderAPI.setPlaceholders(player, input);
-                // 解析Minecraft颜色
-                String parsedColor = parsedPaPi.replace("&", "§");
-                // 向玩家发送信息
-                player.sendMessage(parsedColor);
+                String parsedPaPi = PlaceholderAPI.setPlaceholders(player, input);   // 解析PAPI占位符
+                String parsedColor = parsedPaPi.replace("&", "§"); // 解析原版颜色
+                MessageFile.sendMessage(player, parsedColor); // 发送信息给玩家
             } else {
                 String parsedColor = input.replace("&", "§");
-                player.sendMessage(parsedColor);
+                MessageFile.sendMessage(player, parsedColor); // 发送信息给玩家
             }
+        }
+    }
 
+
+    // 向控制台发送信息
+    public static void CmdReloadInfo() {
+        if(MessageFile.getMessage("PluginsName") != null && MessageFile.getMessage("Reload") != null) {
+            Bukkit.getConsoleSender().sendMessage( "[WorldManage] " + MessageFile.setColors(MessageFile.getMessage("Reload")));
         }
 
     }
 
-    public static void sendMessageToTheConsole(String message) {
-        if(message != null) {
-            // 解析Minecraft颜色
-            String parsedColor = message.replace("&", "§");
-            // 向控制台发送信息
-            Bukkit.getConsoleSender().sendMessage(parsedColor);
-        }
-    }
-
-    public String getMessage(String message) {
-        if(message != null) {
-            return messageFile.getString(message);
-        }
-        return null;
+    // 发送信息
+    public static void sendMessage(Player player, String message) {
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(
+                MessageFile.setColors(MessageFile.getMessage("PluginsName")) +  message));
     }
 
 }

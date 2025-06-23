@@ -1,8 +1,9 @@
 package com.maddyjace.worldmanage.ListenerPlayerRules;
 
+import com.maddyjace.worldmanage.ConfigFile.ConfigFile;
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,15 +27,18 @@ public class PlayerUseItem implements Listener {
             if(WorldFile.INSTANCE.playerRulesList(world.getName(), "playerRules", player,
                     "playerUseItem", itemName)) {
                 event.setCancelled(true);
-
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("PlayerUseItemMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f:" + getMessage.getMessage("PlayerUseItemMessage"));
+                // 取消事件后向玩家发送提示信息
+                if(MessageFile.getMessage("PlayerUseItemMessage") != null) {
+                    MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerUseItemMessage"));
                 }
 
-
             }
+
+            // 调试模式: 向控制台返回被交互的物品名称
+            if(ConfigFile.getConfig("getItemNane") && MessageFile.getMessage("getItemNaneMessage") != null && player.isOp()) {
+                Bukkit.getConsoleSender().sendMessage(MessageFile.setColors(MessageFile.getMessage("getItemNaneMessage")));
+            }
+
         }
 
     }
@@ -53,21 +57,23 @@ public class PlayerUseItem implements Listener {
                 if(WorldFile.INSTANCE.playerRulesList(world.getName(), "playerRules", player,
                         "PlayerInteractBlock", blockName)) {
                     event.setCancelled(true);
-
-                    MessageFile getMessage = MessageFile.INSTANCE;
-                    if(getMessage.getMessage("PlayerInteractBlockMessage") != null) {
-                        MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                                "&f:" + getMessage.getMessage("PlayerInteractBlockMessage"));
+                    // 取消事件后向玩家发送提示信息
+                    if(MessageFile.getMessage("PlayerInteractBlockMessage") != null) {
+                        MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerInteractBlockMessage"));
                     }
-
-
                 }
+
+                // 调试模式: 向控制台返回被交互的方块名称
+                if(ConfigFile.getConfig("getBlockName") && MessageFile.getMessage("getBlockNameMessage") != null && player.isOp()) {
+                    Bukkit.getConsoleSender().sendMessage(MessageFile.setColors(MessageFile.getMessage("getBlockNameMessage")));
+                }
+
             }
         }
 
     }
 
-
+    // 该方法当玩家触发方块时处理
     @EventHandler
     public void onPlayerUseItem02(PlayerInteractEvent event) {
 
@@ -79,15 +85,11 @@ public class PlayerUseItem implements Listener {
                 if(WorldFile.INSTANCE.playerRulesList(world.getName(), "playerRules", player,
                         "PlayerTriggerBlock", blockName)) {
                     event.setCancelled(true);
+                    // 取消事件后向玩家发送提示信息
+                    if(MessageFile.getMessage("PlayerTriggerBlockMessage") != null) {
+                        MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerTriggerBlockMessage"));
+                    }
                 }
-
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("PlayerTriggerBlockMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f: " + getMessage.getMessage("PlayerTriggerBlockMessage"));
-                }
-
-
             }
         }
 

@@ -40,7 +40,6 @@ world_1:
     # 是否阻止玩家进入末地传送门
     portalEnder: false
 
-
     # 由于插件基于1.12开发，阻止使用物品没有明确分类
     # 是否阻止玩家右键使用物品(需要您自己去配置物品列表！)
     playerUseItem:
@@ -163,4 +162,9 @@ world_1:
         - "BREWING_STAND"
         - "CAULDRON"
 
+    # 是否阻止玩家触发方块
     PlayerTriggerBlock:
+      #  - BLACKLIST（黑名单模式：阻止列出的实体）
+      #  - WHITELIST（白名单模式：只允许列出的实体）
+      type: BLACKLIST
+      list: {}

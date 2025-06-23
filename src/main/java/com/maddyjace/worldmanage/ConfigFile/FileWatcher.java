@@ -2,12 +2,12 @@ package com.maddyjace.worldmanage.ConfigFile;
 
 import org.apache.commons.io.monitor.*;
 import org.apache.commons.io.filefilter.*;
-import org.bukkit.ChatColor;
 
 import java.io.File;
 
 // 该类用于监听文件发生变化时
 public class FileWatcher {
+
     private final File folder;
     private final String suffixFilter;
 
@@ -52,7 +52,7 @@ public class FileWatcher {
             // 创建
             @Override
             public void onFileCreate(File file) {
-                onFileChanged(file);
+                // onFileChanged(file);
             }
 
             // 修改
@@ -64,7 +64,7 @@ public class FileWatcher {
             // 删除
             @Override
             public void onFileDelete(File file) {
-                onFileChanged(file);
+                // onFileChanged(file);
             }
         });
 
@@ -81,21 +81,19 @@ public class FileWatcher {
 
     // 处理逻辑方法
     private void onFileChanged(File file) {
-        MessageFile getMessage = MessageFile.INSTANCE;
-
         if(file.getName().equals("world.yml")) {
             WorldFile.INSTANCE.reload();
-            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
+            MessageFile.CmdReloadInfo(); // 向控制台发送信息
         }
 
         if(file.getName().equals("message.yml")) {
             MessageFile.INSTANCE.reload();
-            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
+            MessageFile.CmdReloadInfo(); // 向控制台发送信息
         }
 
         if(file.getName().equals("config.yml")) {
-            MessageFile.INSTANCE.reload();
-            // MessageFile.sendMessageToTheConsole(getMessage.getMessage("PluginsName") + ": " + getMessage.getMessage("reload"));
+            ConfigFile.INSTANCE.reload();
+            MessageFile.CmdReloadInfo(); // 向控制台发送信息
         }
     }
 

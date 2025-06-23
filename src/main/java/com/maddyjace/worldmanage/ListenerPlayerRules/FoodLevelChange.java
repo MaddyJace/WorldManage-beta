@@ -15,31 +15,32 @@ public class FoodLevelChange implements Listener {
 
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
+
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
             World world = player.getWorld();
             if(WorldFile.INSTANCE.playerRules(world.getName(),"food", player)) {
                 event.setCancelled(true);
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("FoodLevelChangeMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f: " + getMessage.getMessage("FoodLevelChangeMessage"));
+                // 取消事件后向玩家发送提示信息
+                if(MessageFile.getMessage("FoodLevelChangeMessage") != null) {
+                    MessageFile.parsePlaceholders(player, MessageFile.getMessage("FoodLevelChangeMessage"));
                 }
             }
 
-            if(WorldFile.INSTANCE.playerRules(world.getName(),"foodSatiety", player)) {
 
+
+            if(WorldFile.INSTANCE.playerRules(world.getName(),"foodSatiety", player)) {
                 Bukkit.getScheduler().runTaskLater(
                         JavaPlugin.getProvidingPlugin(this.getClass()),
                         () -> player.setFoodLevel(20), 1L // 延迟1tick确保事件已处理完
                 );
-
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("FoodSatietyMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f: " + getMessage.getMessage("FoodSatietyMessage"));
+                // 取消事件后向玩家发送提示信息
+                if(MessageFile.getMessage("FoodSatietyMessage") != null) {
+                    MessageFile.parsePlaceholders(player, MessageFile.getMessage("FoodSatietyMessage"));
                 }
             }
         }
+
+
     }
 }

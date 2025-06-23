@@ -23,10 +23,9 @@ public class PlayerBucketEmpty implements Listener {
             Material bucket = event.getBucket();
             if (bucket.name().endsWith("_BUCKET")) {
                 event.setCancelled(true);
-                MessageFile getMessage = MessageFile.INSTANCE;
-                if(getMessage.getMessage("PlayerBucketEmptyMessage") != null) {
-                    MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                            "&f:" + getMessage.getMessage("PlayerBucketEmptyMessage"));
+                // 取消事件后向玩家发送提示信息
+                if(MessageFile.getMessage("PlayerBucketEmptyMessage") != null) {
+                    MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerBucketEmptyMessage"));
                 }
             }
         }
@@ -41,10 +40,9 @@ public class PlayerBucketEmpty implements Listener {
         World world = player.getWorld();
         if(WorldFile.INSTANCE.playerRules(world.getName(),"usePail", player)) {
             event.setCancelled(true);
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("PlayerBucketEmptyMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("PlayerBucketEmptyMessage"));
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("PlayerBucketEmptyMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("PlayerBucketEmptyMessage"));
             }
         }
 

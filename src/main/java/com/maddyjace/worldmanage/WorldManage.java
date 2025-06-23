@@ -1,6 +1,7 @@
 package com.maddyjace.worldmanage;
 
 import com.maddyjace.worldmanage.Commands.Commands;
+import com.maddyjace.worldmanage.ConfigFile.ConfigFile;
 import com.maddyjace.worldmanage.ConfigFile.FileWatcher;
 import com.maddyjace.worldmanage.ConfigFile.MessageFile;
 import com.maddyjace.worldmanage.ConfigFile.WorldFile;
@@ -9,23 +10,42 @@ import com.maddyjace.worldmanage.ListenerGlobalRules.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class WorldManage extends JavaPlugin {
 
-    private final FileWatcher watcher = new FileWatcher(getDataFolder().getAbsolutePath(), ".yml", 100);
+    private FileWatcher watcher;
 
     @Override
     public void onEnable() {
 
-        // 载入 config.yml 和 world.yml 文件
-        saveDefaultConfig();
-        saveResource("world.yml", false);
-        saveResource("message.yml", false);
-        try {
-            watcher.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        // 初始化 FileWatcher 类
+        watcher = new FileWatcher(getDataFolder().getAbsolutePath(), ".yml", 100);
 
+        // 初始化 world.yml 类
+        WorldFile.INSTANCE.initialize(this);
+        // 初始化 message.yml 类
+        MessageFile.INSTANCE.initialize(this,Bukkit.getPluginManager().getPlugin("PlaceholderAPI"));
+        // 初始化 config.yml 类
+        ConfigFile.INSTANCE.initialize(this);
+
+        // 载入 config.yml world.yml message.yml 文件
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) { saveResource("config.yml", false); }
+        File worldFile = new File(getDataFolder(), "world.yml");
+        if (!worldFile.exists()) { saveResource("world.yml", false); }
+        File messageFile = new File(getDataFolder(), "message.yml");
+        if (!messageFile.exists()) { saveResource("message.yml", false); }
+
+        // 当 config.yml 和 autoReload 为 true 时
+        if(ConfigFile.getConfig("autoReload")) {
+            // 开启文件监听
+            try {
+                watcher.start();
+            } catch (Exception e) {
+                getLogger().warning("The automatic reload function failed to enable!");
+            }
+        }
 
         // 注册 点燃方块 监听器
         getServer().getPluginManager().registerEvents(new BlockIgnite(), this);
@@ -56,12 +76,6 @@ public final class WorldManage extends JavaPlugin {
         // 注册 实体破坏方块 监听器
         getServer().getPluginManager().registerEvents(new EntityBlockBreak(), this);
 
-
-        // 初始化 world.yml 类
-        WorldFile.INSTANCE.initialize(this);
-        // 初始化 message.yml 类
-        MessageFile.INSTANCE.initialize(this,Bukkit.getPluginManager().getPlugin("PlaceholderAPI"));
-
         // 注册 命令 和 Tab键 监听器
         Commands commandHandler = new Commands();
         this.getCommand("worldmanage").setExecutor(commandHandler);     // 命令
@@ -85,6 +99,7 @@ public final class WorldManage extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // 关闭文件监听
         try {
             watcher.stop();
         } catch (Exception e) {

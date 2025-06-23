@@ -17,11 +17,12 @@ public class BlockBreak implements Listener {
         World world = event.getBlock().getWorld();
         if(WorldFile.INSTANCE.playerRules(world.getName(),"blockBreak", player)) {
             event.setCancelled(true);
+            // 取消事件后向玩家发送提示信息
+            if(MessageFile.getMessage("BlockBreakMessage") != null) {
+                MessageFile.parsePlaceholders(player, MessageFile.getMessage("BlockBreakMessage"));
 
-            MessageFile getMessage = MessageFile.INSTANCE;
-            if(getMessage.getMessage("BlockBreakMessage") != null) {
-                MessageFile.parsePlaceholders(player, getMessage.getMessage("PluginsName") +
-                        "&f: " + getMessage.getMessage("BlockBreakMessage"));
+
+
             }
 
         }
